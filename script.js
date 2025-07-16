@@ -1,20 +1,25 @@
+const plan = document.getElementById("plan");
 const delivery = document.getElementById("delivery");
 const people = document.getElementById("people");
-const basePrice = 2000;
 const userName = document.getElementById("userName");
 const payment = document.getElementById("payment");
 
 function updateEstimate() {
+    const basePrice = parseInt(plan.value);
     const deliveryCost = parseInt(delivery.value);
     const peopleCount = parseInt(people.value);
+
     let peopleCost = 0;
     if (peopleCount >= 2) {
         peopleCost = (peopleCount - 1) * 1000;
     }
     const total = basePrice + peopleCost + deliveryCost;
+
+    document.getElementById("planName").textContent = plan.options[plan.selectedIndex].text.split("（")[0];
     document.getElementById("basePrice").textContent = `￥${basePrice.toLocaleString()}`;
     document.getElementById("peoplePrice").textContent = `￥${peopleCost.toLocaleString()}`;
     document.getElementById("deliveryPrice").textContent = `￥${deliveryCost.toLocaleString()}`;
+
     const totalElement = document.getElementById("totalPrice");
     totalElement.textContent = `￥${total.toLocaleString()}`;
     totalElement.style.animation = "none";
@@ -22,9 +27,11 @@ function updateEstimate() {
     totalElement.style.animation = "flash 0.5s";
 }
 
+plan.addEventListener("change", updateEstimate);
 delivery.addEventListener("change", updateEstimate);
 people.addEventListener("input", updateEstimate);
 updateEstimate();
+
 document.body.classList.add("fade-in");
 
 document.getElementById("dummyButton").addEventListener("click", () => {
@@ -45,12 +52,15 @@ document.getElementById("copyButton").addEventListener("click", () => {
 });
 
 function generateTemplate() {
+    const planName = plan.options[plan.selectedIndex].text.split("（")[0];
     const deliveryText = delivery.options[delivery.selectedIndex].text.split("（")[0];
     const paymentValue = payment.value;
     const peopleCount = parseInt(people.value);
+    const basePriceValue = parseInt(plan.value);
     const peopleCost = peopleCount >= 2 ? (peopleCount - 1) * 1000 : 0;
     const deliveryCost = parseInt(delivery.value);
-    const total = basePrice + peopleCost + deliveryCost;
+    const total = basePriceValue + peopleCost + deliveryCost;
+
     let bankInfo = "";
     if (paymentValue === "銀行振込") {
         bankInfo = `
@@ -60,6 +70,7 @@ function generateTemplate() {
 口座番号:普通預金 3927902
 名前:フジイ ムガ`;
     }
+
     const template = `${userName.value} 様
 
 曲名(URL):
@@ -72,19 +83,21 @@ function generateTemplate() {
 
 概算見積もり内容
 
-・納期:音源提出から${deliveryText}
-・人数:${peopleCount}人
-・お支払い方法:${paymentValue}
+・プラン: ${planName}
+・納期: 音源提出から${deliveryText}
+・人数: ${peopleCount}人
+・お支払い方法: ${paymentValue}
 ${bankInfo}
 
 詳細
-・基本金額 ¥${basePrice.toLocaleString()}
+・基本金額 ¥${basePriceValue.toLocaleString()}
 ・人数金額 ¥${peopleCost.toLocaleString()}
 ・納期短縮 ¥${deliveryCost.toLocaleString()}
 ・合計 ¥${total.toLocaleString()}
 
 ⟡.·*.··············································⟡.·*.
 `;
+
     document.getElementById("templateText").value = template;
 }
 

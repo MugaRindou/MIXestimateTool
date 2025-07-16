@@ -15,6 +15,13 @@
         <input type="text" id="userName" placeholder="お名前を入力してください" />
     </label>
 
+    <label>プラン:
+        <select id="plan">
+            <option value="1000">Shortプラン（¥1,000）</option>
+            <option value="2000">基本プラン（¥2,000）</option>
+        </select>
+    </label>
+
     <label>納期:
         <select id="delivery">
             <option value="0">2週間（￥0）</option>
@@ -38,10 +45,10 @@
     <table>
         <tbody>
             <tr><th>項目</th><th>金額</th></tr>
-            <tr><td>基本金額</td><td id="basePrice">￥2,000</td></tr>
+            <tr><td id="planName">Shortプラン</td><td id="basePrice">￥1,000</td></tr>
             <tr><td>人数金額</td><td id="peoplePrice">￥0</td></tr>
             <tr><td>納期短縮</td><td id="deliveryPrice">￥0</td></tr>
-            <tr><th>合計</th><th id="totalPrice">￥2,000</th></tr>
+            <tr><th>合計</th><th id="totalPrice">￥1,000</th></tr>
         </tbody>
     </table>
 
@@ -49,11 +56,11 @@
 </div>
 
 <div id="template-section" style="display: none;">
-    <h1>ご依頼時はこちらをご提示ください</h1>
-    <p>次に表示されるテンプレートをコピーするか下記ボタンよりDMしてください。</p>
+    <h1>テンプレートをコピーしてください</h1>
+    <p>次に表示されるテンプレートをコピーして依頼時にDMしてください。</p>
     <textarea id="templateText" rows="20" readonly></textarea>
     <button id="copyButton">コピーする</button>
-    <button id="openDmButton">XのDM画面を開く(コピペ不要)</button>
+    <button id="openDmButton">XのDM画面を開く</button>
     <button onclick="location.reload()">フォームに戻る</button>
 </div>
 
