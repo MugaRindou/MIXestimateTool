@@ -10,30 +10,24 @@ body {
     transform: translateY(20px);
     transition: opacity 0.8s ease, transform 0.8s ease;
 }
-
 body.fade-in {
     opacity: 1;
     transform: translateY(0);
 }
-
 h1 {
     text-align: center;
     color: #3a7bd5;
 }
-
 label {
     display: block;
     margin-bottom: 10px;
     font-weight: bold;
 }
-
-input,
-select {
+input, select {
     padding: 5px;
     border: 1px solid #a0c4ff;
     border-radius: 4px;
 }
-
 table {
     width: 100%;
     border-collapse: collapse;
@@ -41,23 +35,18 @@ table {
     background: #ffffff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
 }
-
-th,
-td {
+th, td {
     border: 1px solid #a0c4ff;
     padding: 8px;
     text-align: right;
 }
-
 th {
     background: #dbeeff;
     color: #333;
 }
-
 tr:nth-child(even) td {
     background: #f5faff;
 }
-
 button {
     margin-top: 20px;
     padding: 10px 20px;
@@ -68,48 +57,32 @@ button {
     cursor: pointer;
     transition: transform 0.2s ease;
 }
-
 button:hover {
     background: #356ac3;
     transform: scale(1.05);
 }
-
 @keyframes flash {
-    0% {
-        background-color: #fff;
-        color: #333;
-    }
-
-    50% {
-        background-color: #a0c4ff;
-        color: #000;
-    }
-
-    100% {
-        background-color: #fff;
-        color: #333;
-    }
+    0% { background-color: #fff; color: #333; }
+    50% { background-color: #a0c4ff; color: #000; }
+    100% { background-color: #fff; color: #333; }
 }
-
-/* スマホ対応のレスポンシブ */
 @media screen and (max-width: 480px) {
-    body {
-        padding: 10px;
-        max-width: 100%;
-    }
-
-    table,
-    th,
-    td {
-        font-size: 14px;
-    }
-
-    input,
-    select,
-    button {
+    body { padding: 10px; max-width: 100%; }
+    table, th, td { font-size: 14px; }
+    input, select, button {
         width: 100%;
         box-sizing: border-box;
         font-size: 16px;
         height: 40px;
     }
+}
+#templateText {
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 20px;
+    font-size: 14px;
+    padding: 10px;
+}
+#template-section button {
+    margin-top: 10px;
 }
